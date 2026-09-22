@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6stj04a2ywmx"
-path="res://.godot/imported/blobl.png-b1ba63dc81c191cc71a7d9ec88feddca.ctex"
+uid="uid://cuvhcy37xwltb"
+path="res://.godot/imported/blobina.png-832520286ed59044cbaa7b497f991c37.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://blobl.png"
-dest_files=["res://.godot/imported/blobl.png-b1ba63dc81c191cc71a7d9ec88feddca.ctex"]
+source_file="res://blobina.png"
+dest_files=["res://.godot/imported/blobina.png-832520286ed59044cbaa7b497f991c37.ctex"]
 
 [params]
 
