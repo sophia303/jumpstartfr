@@ -1,12 +1,13 @@
 [gd_scene format=4 uid="uid://b1bjixsvfwf86"]
 
 [ext_resource type="Texture2D" uid="uid://b7hltk4gt7qho" path="res://blob.png" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://6vujk5p6dnqu" path="res://main.gd" id="1_5vw27"]
 [ext_resource type="Script" uid="uid://cgde72rre4yfj" path="res://character_body_2d.gd" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://cq8gv6frwh141" path="res://Seasonal Tilesets/1 - Grassland/Background parts/5 - Sky_color.png" id="1_lquwl"]
 [ext_resource type="Texture2D" uid="uid://238xhrcl0a6o" path="res://Seasonal Tilesets/1 - Grassland/Background parts/3 - Cloud_cover_1.png" id="2_7mycd"]
 [ext_resource type="Texture2D" uid="uid://dqjk2a8h4ny2w" path="res://Seasonal Tilesets/1 - Grassland/Background parts/1 - Foreground_scenery.png" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://cuvhcy37xwltb" path="res://blobina.png" id="3_7mycd"]
-[ext_resource type="Script" uid="uid://b3j76uc6mikca" path="res://character_body_2d_3.gd" id="7_272bh"]
+[ext_resource type="Script" uid="uid://c2ayycuxv315o" path="res://kill_block.gd" id="7_272bh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ptb2r"]
 radius = 21.0
@@ -134,59 +135,61 @@ texture = ExtResource("2_h2yge")
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_1bvp3")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptb2r"]
-size = Vector2(3411, 393)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dfipr"]
+size = Vector2(633.2667, 662.5)
 
 [node name="main" type="Node" unique_id=206866604]
+script = ExtResource("1_5vw27")
+metadata/_edit_vertical_guides_ = [1580.0]
 
-[node name="5SkyColor" type="Sprite2D" parent="." unique_id=154499267]
+[node name="bg" type="Sprite2D" parent="." unique_id=154499267]
 position = Vector2(-98.00003, -22.000002)
 scale = Vector2(11.657, 15)
 texture = ExtResource("1_lquwl")
 
-[node name="3CloudCover1" type="Sprite2D" parent="." unique_id=684117990]
-position = Vector2(50, -53)
-scale = Vector2(2, 2)
+[node name="cloud" type="Sprite2D" parent="bg" unique_id=684117990]
+position = Vector2(12.696238, -2.0666666)
+scale = Vector2(0.17157075, 0.13333334)
 texture = ExtResource("2_7mycd")
 
-[node name="3CloudCover2" type="Sprite2D" parent="." unique_id=1508296945]
-position = Vector2(600, -20)
-scale = Vector2(2, 2)
+[node name="cloud1" type="Sprite2D" parent="bg" unique_id=1508296945]
+position = Vector2(59.878197, 0.13333344)
+scale = Vector2(0.17157075, 0.13333334)
 texture = ExtResource("2_7mycd")
 
-[node name="3CloudCover3" type="Sprite2D" parent="." unique_id=501632536]
-position = Vector2(1200, -20)
-scale = Vector2(2, 2)
+[node name="cloud2" type="Sprite2D" parent="bg" unique_id=501632536]
+position = Vector2(111.34942, 0.13333344)
+scale = Vector2(0.17157075, 0.13333334)
 texture = ExtResource("2_7mycd")
 
-[node name="CharacterBody2D2" type="CharacterBody2D" parent="." unique_id=559718533]
+[node name="win pt" type="Area2D" parent="." unique_id=1605870819]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2" unique_id=1551724220]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="win pt" unique_id=1551724220]
 position = Vector2(1192, 95)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_ptb2r")
 
-[node name="Blobina" type="Sprite2D" parent="CharacterBody2D2/CollisionShape2D" unique_id=555723760]
+[node name="Blobina" type="Sprite2D" parent="win pt/CollisionShape2D" unique_id=555723760]
 position = Vector2(1, -3)
 rotation = -1.5707964
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_7mycd")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=936966184]
+[node name="player" type="CharacterBody2D" parent="." unique_id=936966184]
 script = ExtResource("1_h2yge")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1613175765]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player" unique_id=1613175765]
 position = Vector2(9, -13)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_lquwl")
 
-[node name="Blob" type="Sprite2D" parent="CharacterBody2D/CollisionShape2D" unique_id=1741977760]
+[node name="Blob" type="Sprite2D" parent="player/CollisionShape2D" unique_id=1741977760]
 position = Vector2(-4.000001, -0.99999905)
 rotation = -1.5707964
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_0xm2m")
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D/CollisionShape2D" unique_id=512614709]
+[node name="Camera2D" type="Camera2D" parent="player/CollisionShape2D" unique_id=512614709]
 position = Vector2(6, -1.0000002)
 rotation = -1.5707964
 position_smoothing_enabled = true
@@ -196,9 +199,12 @@ position = Vector2(2, 0)
 tile_map_data = PackedByteArray("AAD9/wMAAQACAAsAAAD+/wMAAQACAAsAAAD//wMAAQAEAAsAAAADAAQAAQAIAAwAAAACAAQAAQAHAAwAAAABAAQAAQAHAAwAAAAAAAQAAQAHAAwAAAD//wQAAQAHAAwAAAD+/wQAAQAHAAwAAAD9/wQAAQAHAAwAAAAEAAMAAQACAAsAAAAEAAQAAQAJAAwAAAABAAMAAQACAAsAAAADAAMAAQABAAsAAAACAAMAAQABAAsAAAAAAAMAAQABAAsAAAAKAAIAAQAAAAwAAAALAAIAAQAAAAwAAAAMAAIAAQAAAAwAAAANAAIAAQAAAAwAAAAOAAIAAQAAAAwAAAAPAAIAAQAAAAwAAAAQAAIAAQAAAAwAAAARAAIAAQAAAAwAAAASAAIAAQAAAAwAAAATAAIAAQAAAAwAAAAKAAEAAQABAAsAAAALAAEAAQACAAsAAAAMAAEAAQABAAsAAAANAAEAAQABAAsAAAAOAAEAAQABAAsAAAAPAAEAAQAEAAsAAAAQAAEAAQABAAsAAAARAAEAAQAEAAsAAAASAAEAAQACAAsAAAATAAEAAQACAAsAAAATAAcAAQAAAAwAAAAUAAcAAQAAAAwAAAAVAAcAAQAAAAwAAAAWAAcAAQAAAAwAAAAXAAcAAQAAAAwAAAAYAAcAAQAAAAwAAAAZAAcAAQAAAAwAAAAaAAcAAQAAAAwAAAAbAAcAAQAAAAwAAAAbAAYAAQABAAsAAAAaAAYAAQACAAsAAAAZAAYAAQACAAsAAAAYAAYAAQACAAsAAAAXAAYAAQABAAsAAAAWAAYAAQABAAsAAAAVAAYAAQABAAsAAAAUAAYAAQACAAsAAAATAAYAAQABAAsAAAAiAAQAAQABAAwAAAAjAAQAAQABAAwAAAAjAAMAAQABAAsAAAAiAAMAAQACAAsAAAAyAAQAAQAAAAwAAAAzAAQAAQAAAAwAAAA0AAQAAQAAAAwAAAA1AAQAAQAAAAwAAAA2AAQAAQAAAAwAAAA2AAMAAQABAAsAAAA3AAQAAQAAAAwAAAAyAAMAAQACAAsAAAAzAAMAAQACAAsAAAA0AAMAAQACAAsAAAA3AAMAAQACAAsAAAA1AAMAAQABAAsAAAA9AAgAAQAAAAwAAAA+AAgAAQAAAAwAAAA/AAgAAQAAAAwAAABAAAgAAQAAAAwAAABBAAgAAQAAAAwAAABCAAgAAQAAAAwAAABDAAgAAQAAAAwAAABEAAgAAQAAAAwAAABFAAgAAQAAAAwAAABGAAgAAQAAAAwAAABHAAgAAQAAAAwAAABIAAgAAQAAAAwAAABLAAgAAQAAAAwAAABKAAgAAQAAAAwAAABJAAgAAQAAAAwAAABLAAcAAQACAAsAAABKAAcAAQABAAsAAABJAAcAAQABAAsAAABIAAcAAQACAAsAAABHAAcAAQACAAsAAABGAAcAAQACAAsAAABFAAcAAQABAAsAAABEAAcAAQABAAsAAABDAAcAAQABAAsAAABCAAcAAQACAAsAAABBAAcAAQABAAsAAABAAAcAAQABAAsAAAA/AAcAAQACAAsAAAA+AAcAAQABAAsAAAA9AAcAAQABAAsAAAAgAAQAAQABAAsAAAAgAAUAAQAAAAwAAAAfAAUAAQAAAAwAAAAfAAQAAQACAAsAAAAoAAIAAQABAAsAAAAoAAMAAQAAAAwAAAApAAIAAQACAAsAAAApAAMAAQAAAAwAAAAnAAIAAQABAAsAAAAnAAMAAQAAAAwAAAAqAAMAAQAAAAwAAAArAAMAAQAAAAwAAAAqAAIAAQABAAsAAAArAAIAAQACAAsAAAAsAAIAAQACAAsAAAAsAAMAAQABAAwAAAA=")
 tile_set = SubResource("TileSet_dfipr")
 
-[node name="CharacterBody2D3" type="CharacterBody2D" parent="." unique_id=1916081281]
+[node name="kill block" type="Area2D" parent="." unique_id=73496261]
 script = ExtResource("7_272bh")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D3" unique_id=1475639616]
-position = Vector2(-109.5, 1164)
-shape = SubResource("RectangleShape2D_ptb2r")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="kill block" unique_id=593315406]
+position = Vector2(717, 748)
+scale = Vector2(3, 1)
+shape = SubResource("RectangleShape2D_dfipr")
+
+[connection signal="body_entered" from="kill block" to="kill block" method="_on_body_entered"]
